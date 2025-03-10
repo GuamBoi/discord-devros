@@ -2,10 +2,12 @@ import logging
 import os
 import json
 from discord.ext import commands
-from discord import Intents 
+from discord import Intents
 import sys
 import getpass  # Import getpass to get the username of the logged-in user
 from dotenv import load_dotenv  # Import dotenv to load environment variables
+import traceback
+import asyncio
 
 # Load environment variables from the .env file
 load_dotenv()
@@ -30,7 +32,7 @@ if os.path.exists(settings_path):
 else:
     settings = {}
 
-command_prefix = settings.get("command_prefix")
+command_prefix = settings.get("command_prefix", "?")
 disabled_commands = settings.get("disabled_commands", [])
 
 # Configure intents
