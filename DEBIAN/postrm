@@ -1,14 +1,1 @@
-#!/bin/bash
-set -e
 
-# Get the logged-in user's username
-USER_NAME=$(whoami)
-
-# Remove the virtual environment if no longer needed
-echo "Removing virtual environment..."
-rm -rf "/home/$USER_NAME/discord-devros/venv"
-
-# Optional: Clean up any other package-specific files
-echo "Removing other package-specific files..."
-
-echo "Post-removal complete."
