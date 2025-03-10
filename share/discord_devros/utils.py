@@ -1,9 +1,7 @@
 import aiohttp
 import os
 import logging
-
 import requests
-import os
 
 # Function to query OpenWebUI API
 def query_openwebui(prompt):
