@@ -1,1 +1,1 @@
-from .ask import AskCommand  # Import the AskCommand from ask.py
+from .commands import *  # Imports everything from the commands module
