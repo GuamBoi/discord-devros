@@ -1,1 +1,32 @@
+#!/bin/bash
+set -e  # Exit on any error
 
+# Get the logged-in user's username
+USER_NAME=$(whoami)
+
+# Directory of the bot
+BOT_DIR="/home/$USER_NAME/discord-devros"
+
+# Log file
+LOG_FILE="/var/log/bot.log"
+
+# Ensure log directory exists
+mkdir -p "$(dirname "$LOG_FILE")"
+touch "$LOG_FILE"
+chmod 664 "$LOG_FILE"
+
+# Change to the bot directory
+cd "$BOT_DIR/share/discord_devros" || { echo "Bot directory not found!" | tee -a "$LOG_FILE"; exit 1; }
+
+# Activate virtual environment
+if [ -d "$BOT_DIR/venv" ]; then
+    echo "Activating virtual environment..." | tee -a "$LOG_FILE"
+    source "$BOT_DIR/venv/bin/activate"
+else
+    echo "Virtual environment not found! Please ensure it is installed." | tee -a "$LOG_FILE"
+    exit 1
+fi
+
+# Run the bot and log output
+echo "Starting bot..." | tee -a "$LOG_FILE"
+python3 bot.py >> "$LOG_FILE" 2>&1
