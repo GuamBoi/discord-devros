@@ -28,6 +28,9 @@ fi
 # Set permissions for bot.py to ensure it's executable
 BOT_SCRIPT_PATH="$BOT_DIR/share/discord_devros/bot.py"
 
+# Debugging line to confirm the bot script path
+echo "Looking for bot.py at: $BOT_SCRIPT_PATH"
+
 if [ -f "$BOT_SCRIPT_PATH" ]; then
     chmod +x "$BOT_SCRIPT_PATH"
     echo "Permissions set for bot.py"
