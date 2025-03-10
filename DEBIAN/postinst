@@ -1,0 +1,26 @@
+#!/bin/bash
+set -e  # Enable exit on error
+
+# Get the logged-in user's username
+USER_NAME=$(whoami)
+
+# Directory of the bot
+BOT_DIR="/home/$USER_NAME/discord-devros"  # Adjust this path dynamically
+
+# Create virtual environment if it doesn't exist
+if [ ! -d "$BOT_DIR/venv" ]; then
+    echo "Creating virtual environment..."
+    python3 -m venv "$BOT_DIR/venv"
+fi
+
+# Activate virtual environment
+echo "Activating virtual environment..."
+source "$BOT_DIR/venv/bin/activate"
+
+# Install dependencies from requirements.txt
+echo "Installing dependencies..."
+pip install -r "$BOT_DIR/requirements.txt"
+
+# Set permissions
+chmod +x "$BOT_DIR/share/discord-devros/bot.py"
+echo "Installation complete!"
