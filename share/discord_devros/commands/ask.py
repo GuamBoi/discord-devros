@@ -10,7 +10,7 @@ class AskCommand(commands.Cog):
     async def ask(self, ctx, *, question: str):
         """Send a question to the OpenWebUI model and get an answer."""
         await ctx.send("Querying OpenWebUI...")
-        
+
         # Query OpenWebUI for the answer
         result = query_openwebui(question)
         
