@@ -1,12 +1,1 @@
-#!/bin/bash
-set -e
 
-# Deactivate virtual environment if it's activated
-echo "Deactivating virtual environment..."
-deactivate || true
-
-# Optional: Stop the bot if it's running (if you have a service for it)
-echo "Stopping bot..."
-# Add logic to stop the bot if it's running, e.g., kill the process or stop a system service.
-
-echo "Pre-removal complete."
