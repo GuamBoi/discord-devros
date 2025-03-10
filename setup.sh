@@ -13,6 +13,10 @@ if [ ! -d "$BOT_DIR" ]; then
     exit 1
 fi
 
+# Set proper permissions for the bot directory and its contents
+echo "Setting correct file permissions..."
+sudo chown -R $USER_NAME:$USER_NAME "$BOT_DIR"  # Ensure the bot directory and files are owned by the current user
+
 # Install system dependencies (git, dpkg, python3, python3-pip)
 echo "Installing necessary system dependencies..."
 sudo apt update
@@ -34,12 +38,6 @@ sudo dpkg -i "$BOT_DIR/discord-devros.deb"
 # Handle missing dependencies after installation
 echo "Fixing broken packages (if any)..."
 sudo apt --fix-broken install
-
-# Set proper permissions for bot files
-echo "Setting correct file permissions..."
-
-# Ensure the bot directory and its contents are owned by the current user
-sudo chown -R $USER_NAME:$USER_NAME "$BOT_DIR"
 
 # Set the correct permissions for executable scripts
 chmod +x "$BOT_DIR/bin/start_bot"
