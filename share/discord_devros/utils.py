@@ -2,46 +2,33 @@ import aiohttp
 import os
 import logging
 
-# Open WebUI API Setup
-OPEN_WEBUI_API_URL = os.getenv("OPEN_WEBUI_API_URL")
-OPEN_WEBUI_API_KEY = os.getenv("OPEN_WEBUI_API_KEY")
-MODEL_NAME = os.getenv("OPEN_WEBUI_MODEL_NAME")
+import requests
+import os
 
-# Set up logging for better error tracking
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+# Function to query OpenWebUI API
+def query_openwebui(prompt):
+    """Send the prompt to the OpenWebUI API and return the response."""
+    # Fetching the OpenWebUI API URL and API key from environment variables
+    api_url = os.getenv('OPENWEBUI_API_URL', 'http://localhost:5000/v1/query')  # Default URL if not provided
+    api_key = os.getenv('OPENWEBUI_API_KEY', 'your_api_key_here')  # Default API key if not provided
 
-async def query_openwebui(prompt):
     headers = {
-        "Authorization": f"Bearer {OPEN_WEBUI_API_KEY}",
-        "Content-Type": "application/json"
+        'Authorization': f'Bearer {api_key}',  # Authorization header
+        'Content-Type': 'application/json',  # Content type as JSON
     }
+
+    # Prepare the request payload
     payload = {
-        "messages": [{"role": "user", "content": prompt}],
-        "model": MODEL_NAME
+        "prompt": prompt,
+        "max_tokens": 100,  # Adjust based on your needs
+        "temperature": 0.7  # Adjust based on your needs
     }
+
     try:
-        async with aiohttp.ClientSession() as session:
-            async with session.post(OPEN_WEBUI_API_URL, json=payload, headers=headers) as response:
-                # Log the status code and URL for debugging
-                logger.info(f"API response status: {response.status} for {OPEN_WEBUI_API_URL}")
-                
-                response.raise_for_status()  # Raise error for bad responses
-                data = await response.json()
-                
-                # Log the response for debugging
-                logger.debug(f"API response: {data}")
-                
-                # Handle the API response format
-                if "choices" in data and data["choices"]:
-                    return data["choices"][0].get("message", {}).get("content", "No response.")
-                else:
-                    return "Model did not return a valid response."
-    except aiohttp.ClientError as e:
-        # Log client errors (e.g., network issues)
-        logger.error(f"API request error: {e}")
-        return "I'm having trouble connecting to the AI service right now."
-    except Exception as e:
-        # Log unexpected errors
-        logger.error(f"Unexpected error: {e}")
-        return "An unexpected error occurred."
+        # Sending the POST request to the OpenWebUI API
+        response = requests.post(api_url, json=payload, headers=headers)
+        response.raise_for_status()  # Raise an exception for non-2xx responses
+        return response.json()  # Return the response as JSON
+    except requests.exceptions.RequestException as e:
+        print(f"Error querying OpenWebUI: {e}")
+        return {"error": "Failed to query the OpenWebUI API."}
