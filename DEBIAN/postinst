@@ -32,7 +32,8 @@ BOT_SCRIPT_PATH="$BOT_DIR/share/discord_devros/bot.py"
 echo "Looking for bot.py at: $BOT_SCRIPT_PATH"
 
 if [ -f "$BOT_SCRIPT_PATH" ]; then
-    chmod +x "$BOT_SCRIPT_PATH"
+    echo "Setting executable permissions for bot.py..."
+    chmod +x "$BOT_SCRIPT_PATH" || { echo "Failed to set executable permissions on bot.py"; exit 1; }
     echo "Permissions set for bot.py"
 else
     echo "Error: bot.py not found in expected directory: $BOT_SCRIPT_PATH"
