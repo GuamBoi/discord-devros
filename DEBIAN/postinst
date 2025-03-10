@@ -18,9 +18,14 @@ echo "Activating virtual environment..."
 source "$BOT_DIR/venv/bin/activate"
 
 # Install dependencies from requirements.txt
-echo "Installing dependencies..."
-pip install -r "$BOT_DIR/requirements.txt"
+if [ -f "$BOT_DIR/requirements.txt" ]; then
+    echo "Installing dependencies from requirements.txt..."
+    pip install -r "$BOT_DIR/requirements.txt"
+else
+    echo "requirements.txt not found. Skipping dependency installation."
+fi
 
-# Set permissions
+# Set permissions for bot.py to ensure it's executable
 chmod +x "$BOT_DIR/share/discord-devros/bot.py"
+
 echo "Installation complete!"
