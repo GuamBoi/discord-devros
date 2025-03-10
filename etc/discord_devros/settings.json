@@ -1,6 +1,1 @@
-{
-  "command_prefix": "?",
-  "openwebui_model_name": "devros-mini",
-  "max_message_length": 2000,
-  "disabled_commands": []
-}
+
