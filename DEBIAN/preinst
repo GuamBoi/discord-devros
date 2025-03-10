@@ -1,0 +1,18 @@
+#!/bin/bash
+set -e
+
+# Optional: Check if Python3 and pip are installed
+if ! command -v python3 &>/dev/null; then
+    echo "Python3 is not installed. Aborting installation."
+    exit 1
+fi
+
+if ! command -v pip3 &>/dev/null; then
+    echo "pip3 is not installed. Aborting installation."
+    exit 1
+fi
+
+# Optional: Check if required dependencies are present
+# You can add checks for other required packages here
+
+echo "Pre-installation complete."
