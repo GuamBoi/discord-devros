@@ -26,6 +26,14 @@ else
 fi
 
 # Set permissions for bot.py to ensure it's executable
-chmod +x "$BOT_DIR/share/discord-devros/bot.py"
+BOT_SCRIPT_PATH="$BOT_DIR/share/discord_devros/bot.py"
+
+if [ -f "$BOT_SCRIPT_PATH" ]; then
+    chmod +x "$BOT_SCRIPT_PATH"
+    echo "Permissions set for bot.py"
+else
+    echo "Error: bot.py not found in expected directory: $BOT_SCRIPT_PATH"
+    exit 1
+fi
 
 echo "Installation complete!"
