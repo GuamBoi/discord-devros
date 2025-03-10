@@ -122,8 +122,3 @@ sudo nano /etc/discord_devros/settings.json
 - **API issues**: Make sure your OpenWebUI server is running and accessible.
 - **Bot unresponsive**: Check the bot logs (`/lib/bot.log`) for any errors.
 
----
-
-Let me know if anything is unclear or if you need help with another step!
-
----
