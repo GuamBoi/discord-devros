@@ -1,10 +1,20 @@
-import asyncio
 import logging
 import os
-import traceback
 import json
 from discord.ext import commands
-from discord import Intents
+from discord import Intents 
+import sys
+import getpass  # Import getpass to get the username of the logged-in user
+from dotenv import load_dotenv  # Import dotenv to load environment variables
+
+# Load environment variables from the .env file
+load_dotenv()
+
+# Get the logged-in user's username
+USER_NAME = getpass.getuser()
+
+# Append the path to the `discord_devros` module
+sys.path.append(f'/home/{USER_NAME}/discord-devros/share/discord_devros')
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s]: %(message)s")
@@ -56,4 +66,11 @@ async def load_commands():
 
 # Run bot
 if __name__ == "__main__":
-    asyncio.run(load_commands())
+    # Get the bot token from the environment variables
+    bot_token = os.getenv("DISCORD_BOT_TOKEN")
+
+    # Start the bot
+    if bot_token:
+        bot.run(bot_token)  # Make sure to use the correct token variable
+    else:
+        logging.error("No bot token found. Make sure to set the DISCORD_BOT_TOKEN in your .env file.")
