@@ -1,6 +1,6 @@
 {
-  "command_prefix": "?",                  # Change to your prefered command prefix  
-  "openwebui_model_name": "devros-mini",  # Change to your open-webui model name
-  "disabled_commands": []                 # Used to disable commands. Add `"ask"` to disable the ask command for example
-  "max_message_length": 2000              # Already set to the max discord message lenght
+  "command_prefix": "?", # Change to your prefered command prefix  
+  "openwebui_model_name": "devros-mini", # Change to your open-webui model name
+  "disabled_commands": [] # Used to disable commands. Add `"ask"` to disable the ask command for example
+  "max_message_length": 2000 # Already set to the max discord message lenght
 }
