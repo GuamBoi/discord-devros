@@ -1,1 +1,17 @@
+# Python bytecode
+__pycache__/
+*.pyc
 
+# Environment variable files
+/etc/discord-devros/.env
+
+# Logs
+*.log
+
+# Virtual environment
+venv/
+
+# Dependency directories
+*.egg-info/
+dist/
+build/
