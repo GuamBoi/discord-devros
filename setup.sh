@@ -5,17 +5,13 @@ set -e  # Exit on error
 USER_NAME=$(whoami)
 
 # Set up the bot directory
-BOT_DIR="/home/$USER_NAME/discord-devros"
+BOT_DIR="/opt/discord-devros"
 
-# Make sure the repository is cloned before running the script
+# Ensure the repository is cloned and available
 if [ ! -d "$BOT_DIR" ]; then
     echo "Error: $BOT_DIR does not exist. Please clone the repository first using \`git clone https://github.com/GuamBoi/discord-devros.git\`"
     exit 1
 fi
-
-# Set proper permissions for the bot directory and its contents
-echo "Setting correct file permissions..."
-sudo chown -R $USER_NAME:$USER_NAME "$BOT_DIR"  # Ensure the bot directory and files are owned by the current user
 
 # Install system dependencies (git, dpkg, python3, python3-pip)
 echo "Installing necessary system dependencies..."
@@ -38,6 +34,12 @@ sudo dpkg -i "$BOT_DIR/discord-devros.deb"
 # Handle missing dependencies after installation
 echo "Fixing broken packages (if any)..."
 sudo apt --fix-broken install
+
+# Set proper permissions for bot files
+echo "Setting correct file permissions..."
+
+# Ensure the bot directory and its contents are owned by the current user
+sudo chown -R $USER_NAME:$USER_NAME "$BOT_DIR"
 
 # Set the correct permissions for executable scripts
 chmod +x "$BOT_DIR/bin/start_bot"
