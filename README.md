@@ -63,7 +63,7 @@ This is a Discord bot that integrates with OpenWebUI to query AI models. It allo
 First, clone your `discord-devros` repository from GitHub:
 
 ```bash
-git clone git@github.com:GuamBoi/discord-devros.git
+git clone https://github.com/GuamBoi/discord-devros.git
 cd discord-devros
 ```
 
