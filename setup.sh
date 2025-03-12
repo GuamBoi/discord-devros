@@ -19,7 +19,6 @@ fi
 echo "Installing necessary system dependencies..."
 sudo apt update
 sudo apt install -y git dpkg python3 python3-venv build-essential devscripts debhelper fakeroot
-pip install -r "$BOT_DIR/requirements.txt"
 
 # Set up a Python virtual environment if it doesn't exist
 if [ ! -d "$VENV_DIR" ]; then
