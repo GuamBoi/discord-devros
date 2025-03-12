@@ -41,7 +41,7 @@ deactivate
 
 # Update permissions of the preinst script
 echo "Updating permissions of the preinst script..."
-chmod 755 debian/preinst
+chmod 755 DEBIAN/preinst
 
 # Build the .deb package (if necessary)
 echo "Building the .deb package..."
