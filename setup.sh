@@ -39,6 +39,10 @@ pip install -r "$BOT_DIR/requirements.txt"
 # Deactivate virtual environment
 deactivate
 
+# Update permissions of the preinst script
+echo "Updating permissions of the preinst script..."
+chmod 755 debian/preinst
+
 # Build the .deb package (if necessary)
 echo "Building the .deb package..."
 dpkg --build "$BOT_DIR"
