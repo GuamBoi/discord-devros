@@ -5,7 +5,7 @@ set -e  # Exit on error
 USER_NAME=$(whoami)
 
 # Set up the bot directory
-BOT_DIR="/opt/discord-devros"
+BOT_DIR="/home/$USER_NAME/discord-devros"
 
 # Ensure the directory exists or create it
 if [ ! -d "$BOT_DIR" ]; then
