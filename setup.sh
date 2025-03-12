@@ -39,9 +39,10 @@ pip install -r "$BOT_DIR/requirements.txt"
 # Deactivate virtual environment
 deactivate
 
-# Update permissions of the preinst script
-echo "Updating permissions of the preinst script..."
-chmod 755 DEBIAN/preinst
+# Update permissions of the preinst and postinst scripts
+echo "Updating permissions of preinst and postinst scripts..."
+chmod 755 "$BOT_DIR/DEBIAN/preinst"
+chmod 755 "$BOT_DIR/DEBIAN/postinst"
 
 # Build the .deb package (if necessary)
 echo "Building the .deb package..."
