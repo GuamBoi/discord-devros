@@ -56,7 +56,7 @@ sudo chown -R $USER_NAME:$USER_NAME "$BOT_DIR"
 chmod +x "$BOT_DIR/bin/start_bot"
 
 # Set permissions for Python scripts in the commands directory
-find "$BOT_DIR/share/commands/" -type f -name "*.py" -exec chmod +x {} \;
+find "$BOT_DIR/share/discord_devros/commands/" -type f -name "*.py" -exec chmod +x {} \;
 
 # Set up proper permissions for log files (if necessary)
 LOG_FILE="/home/$USER_NAME/discord-devros/var/log/bot.log"
