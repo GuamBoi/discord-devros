@@ -18,7 +18,7 @@ fi
 # Install system dependencies (git, dpkg, python3, python3-venv)
 echo "Installing necessary system dependencies..."
 sudo apt update
-sudo apt install -y git dpkg python3 python3-venv
+sudo apt install -y git dpkg python3 python3-venv build-essential devscripts debhelper fakeroot
 
 # Set up a Python virtual environment if it doesn't exist
 if [ ! -d "$VENV_DIR" ]; then
@@ -47,13 +47,16 @@ chmod 755 "$BOT_DIR/DEBIAN/postinst"
 chmod 755 "$BOT_DIR/DEBIAN/postrm"
 chmod 755 "$BOT_DIR/DEBIAN/prerm"
 
+# Set the working directory to the bot's root directory
+cd "$BOT_DIR" || exit 1
+
 # Build the .deb package (if necessary)
 echo "Building the .deb package..."
-dpkg --build "$BOT_DIR"
+dpkg-deb --build --root-owner-group . ../discord-devros.deb
 
 # Install the package
 echo "Installing the package..."
-sudo dpkg -i "$BOT_DIR/discord-devros.deb"
+sudo dpkg -i ../discord-devros.deb
 
 # Handle missing dependencies after installation
 echo "Fixing broken packages (if any)..."
