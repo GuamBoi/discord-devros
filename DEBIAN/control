@@ -1,6 +1,6 @@
 Package: discord-devros
 Version: 1.0.0
-Architecture: amd64
+Architecture: arm64
 Maintainer: GuamBoi
 Depends: python3, python3-pip, python3-requests, python3-dotenv, python3-aiohttp
 Description: A Discord bot integrated with OpenWebUI to query AI models and provide interactive functionalities.
